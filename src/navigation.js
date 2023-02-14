@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductsScreen from "./screens/ProductsScreen";
 import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 import ShoppingCart from "./screens/ShoppingCart";
-import { Pressable } from "react-native";
+import { Pressable, Text } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
@@ -25,9 +25,7 @@ const Navigation = () => {
                 style={{ flexDirection: "row" }}
               >
                 <FontAwesome5 name="shopping-cart" size={18} color="gray" />
-                <Text style={{ marginLeft: 5, fontWeight: "500" }}>
-                  {numberOfItems}
-                </Text>
+                <Text style={{ marginLeft: 5, fontWeight: "500" }}>1</Text>
               </Pressable>
             ),
           })}
