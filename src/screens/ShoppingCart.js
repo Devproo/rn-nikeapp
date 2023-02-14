@@ -23,6 +23,7 @@ const ShoppingCartTotals = () => (
 const ShoppingCart = () => {
   return (
     <>
+
       <FlatList
         data={cart}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
@@ -44,11 +45,13 @@ const ShoppingCart = () => {
           Check out
         </Text>
       </Pressable>
+     
     </>
   );
 };
 const styles = StyleSheet.create({
   totalsContainer: {
+    width:300,
     margin: 20,
     paddingTop: 10,
     borderColor: "gainsboro",
