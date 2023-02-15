@@ -38,7 +38,7 @@ const ShoppingCart = () => {
       <FlatList
         data={cartItems}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
-        ListHeaderComponent={ShoppingCartTotals}
+        ListFooterComponent={ShoppingCartTotals}
       />
       <Pressable
         style={{
