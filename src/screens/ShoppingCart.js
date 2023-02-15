@@ -1,31 +1,42 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
 import React from "react";
-import cart from "../data/cart";
-import CartListItem from "../components/CartListItem";
 
-const ShoppingCartTotals = () => (
-  <View style={styles.totalsContainer}>
-    <View style={styles.row}>
-      <Text style={styles.text}>Subtotal</Text>
-      <Text style={styles.text}>88</Text>
+import CartListItem from "../components/CartListItem";
+import { useSelector } from "react-redux";
+import {
+  selectDeliveryPrice,
+  selectSubtotal,
+  selectTotal,
+} from "../store/cartSlice";
+
+const ShoppingCartTotals = () => {
+  const Subtotal = useSelector(selectSubtotal);
+  const deliverFee = useSelector(selectDeliveryPrice);
+  const total = useSelector(selectTotal);
+  return (
+    <View style={styles.totalsContainer}>
+      <View style={styles.row}>
+        <Text style={styles.text}>Subtotal</Text>
+        <Text style={styles.text}>{Subtotal}US$</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.text}>Delivery</Text>
+        <Text style={styles.text}>{deliverFee}US$</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.textBold}>Total</Text>
+        <Text style={styles.textBold}>{total}US$</Text>
+      </View>
     </View>
-    <View style={styles.row}>
-      <Text style={styles.text}>Delivery</Text>
-      <Text style={styles.text}>99</Text>
-    </View>
-    <View style={styles.row}>
-      <Text style={styles.textBold}>Total</Text>
-      <Text style={styles.textBold}>88</Text>
-    </View>
-  </View>
-);
+  );
+};
 
 const ShoppingCart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
   return (
     <>
-
       <FlatList
-        data={cart}
+        data={cartItems}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
         ListHeaderComponent={ShoppingCartTotals}
       />
@@ -45,13 +56,12 @@ const ShoppingCart = () => {
           Check out
         </Text>
       </Pressable>
-     
     </>
   );
 };
 const styles = StyleSheet.create({
   totalsContainer: {
-    width:300,
+    width: 300,
     margin: 20,
     paddingTop: 10,
     borderColor: "gainsboro",
